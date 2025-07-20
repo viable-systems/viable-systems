@@ -1,5 +1,4 @@
-# VSM component repositories (managed separately)
-/vsm-*/
+# VSM components are managed as git submodules
 
 # Claude Flow logs and cache
 /.claude/

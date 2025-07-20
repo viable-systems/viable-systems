@@ -1,0 +1,15 @@
+[submodule "vsm-starter"]
+	path = vsm-starter
+	url = https://github.com/viable-systems/vsm-starter.git
+[submodule "vsm-telemetry"]
+	path = vsm-telemetry
+	url = https://github.com/viable-systems/vsm-telemetry.git
+[submodule "vsm-goldrush"]
+	path = vsm-goldrush
+	url = https://github.com/viable-systems/vsm-goldrush.git
+[submodule "vsm-rate-limiter"]
+	path = vsm-rate-limiter
+	url = https://github.com/viable-systems/vsm-rate-limiter.git
+[submodule "vsm-docs"]
+	path = vsm-docs
+	url = https://github.com/viable-systems/vsm-docs.git

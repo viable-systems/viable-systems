@@ -14,11 +14,13 @@ This repository serves as the umbrella project for the Viable Systems ecosystem,
 
 ### Core Packages
 
-- **[vsm-starter](./vsm-starter/)** - Template for building VSM applications
-- **[vsm-telemetry](./vsm-telemetry/)** - Advanced telemetry and monitoring
-- **[vsm-goldrush](./vsm-goldrush/)** - High-performance cybernetic pattern detection
-- **[vsm-rate-limiter](./vsm-rate-limiter/)** - Variety attenuation and rate limiting
-- **[vsm-docs](./vsm-docs/)** - Comprehensive documentation
+Each VSM component is maintained in its own repository:
+
+- **[vsm-starter](https://github.com/viable-systems/vsm-starter)** - Template for building VSM applications
+- **[vsm-telemetry](https://github.com/viable-systems/vsm-telemetry)** - Advanced telemetry and monitoring
+- **[vsm-goldrush](https://github.com/viable-systems/vsm-goldrush)** - High-performance cybernetic pattern detection
+- **[vsm-rate-limiter](https://github.com/viable-systems/vsm-rate-limiter)** - Variety attenuation and rate limiting
+- **[vsm-docs](https://github.com/viable-systems/vsm-docs)** - Comprehensive documentation
 
 ### Architecture
 
@@ -59,20 +61,20 @@ This project includes Claude Flow configuration for intelligent orchestration:
 
 ### Installation
 
-1. Clone this repository:
+1. Clone this repository with all VSM components:
    ```bash
-   git clone https://github.com/viable-systems/viable-systems.git
+   git clone --recursive https://github.com/viable-systems/viable-systems.git
    cd viable-systems
+   ```
+   
+   If you already cloned without `--recursive`, initialize the submodules:
+   ```bash
+   git submodule update --init --recursive
    ```
 
 2. Install Claude Flow dependencies:
    ```bash
    npm install
-   ```
-
-3. Clone VSM components:
-   ```bash
-   ./scripts/clone-all.sh
    ```
 
 ### Using Claude Flow
@@ -97,6 +99,25 @@ viable-systems/
 ├── vsm-rate-limiter/        # Rate limiting
 ├── vsm-docs/                # Documentation
 └── scripts/                 # Utility scripts
+```
+
+## Working with Submodules
+
+### Updating All Submodules
+```bash
+git submodule update --remote --merge
+```
+
+### Working on a Specific Component
+```bash
+cd vsm-starter
+# Make your changes
+git add .
+git commit -m "Your changes"
+git push
+cd ..
+git add vsm-starter
+git commit -m "Update vsm-starter submodule"
 ```
 
 ## Contributing
