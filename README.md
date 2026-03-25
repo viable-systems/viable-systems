@@ -1,135 +1,85 @@
-# Viable Systems
+# viable-systems
 
-A comprehensive implementation of the Viable System Model (VSM) in Elixir, with Claude Flow orchestration for intelligent system coordination.
+Meta-repository that aggregates VSM component repos as git submodules and provides Claude Flow orchestration configuration.
 
-## Overview
+## Status
 
-This repository serves as the umbrella project for the Viable Systems ecosystem, containing:
-- Claude Flow configuration for orchestrating VSM implementations
-- Links to all VSM component repositories
-- Shared tooling and scripts
-- Cross-project coordination
+- Shell scripts and configuration only; no Elixir source code
+- 5 submodules linked (vsm-docs, vsm-goldrush, vsm-rate-limiter, vsm-starter, vsm-telemetry)
+- 4 VSM repos are not included as submodules (vsm-core, vsm-connections, vsm-security, vsm-event-bus)
+- Claude Flow config present but requires Node.js Claude Flow runtime
 
-## VSM Components
-
-### Core Packages
-
-Each VSM component is maintained in its own repository:
-
-- **[vsm-starter](https://github.com/viable-systems/vsm-starter)** - Template for building VSM applications
-- **[vsm-telemetry](https://github.com/viable-systems/vsm-telemetry)** - Advanced telemetry and monitoring
-- **[vsm-goldrush](https://github.com/viable-systems/vsm-goldrush)** - High-performance cybernetic pattern detection
-- **[vsm-rate-limiter](https://github.com/viable-systems/vsm-rate-limiter)** - Variety attenuation and rate limiting
-- **[vsm-docs](https://github.com/viable-systems/vsm-docs)** - Comprehensive documentation
-
-### Architecture
-
-The Viable Systems ecosystem implements Stafford Beer's VSM with modern cloud-native technologies:
-
-```
-┌─────────────────────────────────────────────────────────┐
-│                     System 5 (Policy)                    │
-├─────────────────────────────────────────────────────────┤
-│          System 4              │    System 3*            │
-│      (Intelligence)            │     (Audit)             │
-├────────────────────┬───────────┴──────────────────────┤
-│                    │         System 3                   │
-│    System 2        │        (Control)                  │
-│ (Coordination)     ├────────────────────────────────────┤
-│                    │         System 1                   │
-│                    │      (Operations)                  │
-└────────────────────┴────────────────────────────────────┘
-```
-
-## Claude Flow Integration
-
-This project includes Claude Flow configuration for intelligent orchestration:
-
-- **Auto-topology selection** for optimal agent organization
-- **Parallel execution** for maximum performance
-- **Neural training** capabilities
-- **Self-healing workflows**
-- **Cross-session memory** persistence
-
-## Getting Started
-
-### Prerequisites
-
-- Elixir 1.17+
-- Node.js 18+ (for Claude Flow)
-- Git
-
-### Installation
-
-1. Clone this repository with all VSM components:
-   ```bash
-   git clone --recursive https://github.com/viable-systems/viable-systems.git
-   cd viable-systems
-   ```
-   
-   If you already cloned without `--recursive`, initialize the submodules:
-   ```bash
-   git submodule update --init --recursive
-   ```
-
-2. Install Claude Flow dependencies:
-   ```bash
-   npm install
-   ```
-
-### Using Claude Flow
-
-Start a Claude Flow session:
-```bash
-./claude-flow
-```
-
-Configure swarm parameters in `claude-flow.config.json`.
-
-## Repository Structure
+## Structure
 
 ```
 viable-systems/
-├── claude-flow*              # Claude Flow executable
-├── claude-flow.config.json   # Swarm configuration
-├── .mcp.json                # MCP server configuration
-├── vsm-starter/             # VSM application template
-├── vsm-telemetry/           # Monitoring and dashboards
-├── vsm-goldrush/            # Pattern detection
-├── vsm-rate-limiter/        # Rate limiting
-├── vsm-docs/                # Documentation
-└── scripts/                 # Utility scripts
+├── .gitmodules                              # 5 submodule definitions
+├── .mcp.json                                # MCP server configuration
+├── claude-flow                              # Shell launcher
+├── claude-flow.bat                          # Windows launcher
+├── claude-flow.ps1                          # PowerShell launcher
+├── claude-flow.config.json                  # Swarm/orchestration config
+├── scripts/
+│   ├── clone-all.sh                         # Clone all VSM repos
+│   ├── setup-submodules.sh                  # Initialize submodules
+│   └── validate_package.sh                  # Package validation
+├── vsm_hex_package_architecture.md          # Hex packaging design doc
+├── vsm_repository_migration_roadmap.md      # Migration planning doc
+├── vsm-docs/                                # submodule
+├── vsm-goldrush/                            # submodule
+├── vsm-rate-limiter/                        # submodule
+├── vsm-starter/                             # submodule
+└── vsm-telemetry/                           # submodule
 ```
 
-## Working with Submodules
+## Submodules
 
-### Updating All Submodules
+| Submodule | Repo |
+|-----------|------|
+| vsm-docs | viable-systems/vsm-docs |
+| vsm-goldrush | viable-systems/vsm-goldrush |
+| vsm-rate-limiter | viable-systems/vsm-rate-limiter |
+| vsm-starter | viable-systems/vsm-starter |
+| vsm-telemetry | viable-systems/vsm-telemetry |
+
+## Not included as submodules
+
+- vsm-core
+- vsm-connections
+- vsm-security
+- vsm-event-bus
+- vsm (umbrella project)
+
+## Setup
+
 ```bash
-git submodule update --remote --merge
+git clone --recursive https://github.com/viable-systems/viable-systems.git
+cd viable-systems
+
+# Or if already cloned:
+git submodule update --init --recursive
 ```
 
-### Working on a Specific Component
+## Claude Flow
+
+Requires Node.js and the Claude Flow runtime:
+
 ```bash
-cd vsm-starter
-# Make your changes
-git add .
-git commit -m "Your changes"
-git push
-cd ..
-git add vsm-starter
-git commit -m "Update vsm-starter submodule"
+npm install
+./claude-flow
 ```
 
-## Contributing
+Configuration is in `claude-flow.config.json`.
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
+## Limitations
+
+- Only 5 of 9+ VSM repos are tracked as submodules
+- Claude Flow is a third-party orchestration tool; its availability and compatibility are not guaranteed
+- No CI/CD configuration
+- No tests
+- The `scripts/clone-all.sh` script may reference repos not in the submodule list
+- `.mcp.json` configuration is specific to a particular MCP server setup
 
 ## License
 
-Each VSM component has its own license. See individual repositories for details.
-
-## References
-
-- [Stafford Beer's Viable System Model](https://en.wikipedia.org/wiki/Viable_system_model)
-- [VSM Documentation](https://viable-systems.github.io/vsm-docs/)
-- [Claude Flow Documentation](https://github.com/anthropic/claude-flow)
+See individual submodule repositories for license terms.
